@@ -4,11 +4,9 @@ set -e
 
 build=$(cd "$1/" && pwd)
 
-if test -f "$build/Godeps/Godeps.json" ||
-   (test -d "$build/src" && test -n "$(find "$build/src" -type f -name '*.go' | sed 1q)") || # gb info will detect any dir with a src/ dir in it as good :-()
-   test -f "$build/vendor/vendor.json" # govendor vendor.json file
+if test -f "$build/.golibraries.yml" # golibraries.yml
 then
-  echo Go
+  echo Golib
 else
   exit 1
 fi
